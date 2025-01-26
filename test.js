@@ -1,3 +1,5 @@
+// Testing the ChatGPT API using code from the documentation
+
 import OpenAI from "openai";
 import dotenv from 'dotenv';
 
