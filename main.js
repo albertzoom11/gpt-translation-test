@@ -48,16 +48,18 @@ async function translateSentences(sentences, targetLanguage, tone = "formal", ma
     // Split translations using the delimiter
     const translatedSentences = translatedText.split(delimiter).map((line) => line.trim());
 
-    var numSentencesTooLong = 0;
-    for (let sentence of translatedSentences) {
-        if (sentence.length > maxLength) {
-          numSentencesTooLong++;
-        }
-    }
-
-    if (numSentencesTooLong) {
-        const sentWord = numSentencesTooLong != 1 ? "sentences are" : "sentence is";
-        console.log(`Note: ${numSentencesTooLong} ${sentWord} over the character limit of ${maxLength}.`)
+    if (maxLength) {
+      var numSentencesTooLong = 0;
+      for (let sentence of translatedSentences) {
+          if (sentence.length > maxLength) {
+            numSentencesTooLong++;
+          }
+      }
+  
+      if (numSentencesTooLong) {
+          const sentWord = numSentencesTooLong != 1 ? "sentences are" : "sentence is";
+          console.log(`Note: ${numSentencesTooLong} ${sentWord} over the character limit of ${maxLength}.`)
+      }
     }
 
     return translatedSentences;
