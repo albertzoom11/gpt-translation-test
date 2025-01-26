@@ -89,6 +89,13 @@ async function translateSentences(sentences, targetLanguage, tone = "formal", ma
   const tone = "formal"; // Can also include other tones (e.g. informal, casual, excited, inspiring)
   const maxLength = 100; // Optional: limit each sentence to 100 characters
 
+    try {
+      const translations = await translateSentences(sentences, targetLanguage, tone, maxLength);
+      console.log("Translated Sentences:", translations);
+    } catch (error) {
+      console.error(error.message);
+    }
+
   try {
     const translations = await translateSentences(spanishIdioms, targetLanguage, tone, maxLength);
     console.log("Translated Sentences:", translations);
