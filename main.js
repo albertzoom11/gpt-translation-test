@@ -24,8 +24,8 @@ async function translateSentences(sentences, targetLanguage, tone = "formal", ma
   const delimiter = "@";
   const promptBase = `Translate the following sentences into ${targetLanguage} with a ${tone} tone. Return nothing but the translations with the ${delimiter} symbol between them.`;
   const lengthInstruction = maxLength
-    ? ` Make sure each sentence is no longer than ${maxLength} characters.`
-    : "";
+  const promptBase = `Translate the following sentences into ${targetLanguage} with a ${tone} tone. Return nothing but the translations with the ${delimiter} symbol between them. Maintain consistent terminology for recurring terms or names.`;
+  const lengthInstruction = maxLength ? ` Make sure each sentence is no longer than ${maxLength} characters.`: "";
 
   const prompt = `${promptBase}${lengthInstruction}\n\nSentences:\n${sentences
     .map((sentence, index) => `${index + 1}. ${sentence}`)
@@ -71,6 +71,14 @@ async function translateSentences(sentences, targetLanguage, tone = "formal", ma
 
 // Example
 (async () => {
+  const spanishIdioms = [
+    "Ella está buscando el príncipe azul.", // Literal: She is looking for the blue prince. Actual: She is looking for Prince Charming (the perfect man)
+    "Ver todo color de rosa.", // Literal: To see everything in the pink color. Actual: To see through rose-colored glasses.
+    "He encontrado mi media naranja.", // Literal: To find your half orange. Actual: To find your other/better half.
+    "No hay color.", // Literal: There is no color. Actual: It's like comparing apples to oranges.
+    "Tengo la negra", // Literal: I have the black color. Actual: I have bad luck.
+    "Ella está hasta en la sopa." // Literal: She is evenly in the soup. Actual: She is here, there, and everywhere.
+  ];
   const sentences = [
     "In this video, we will demonstrate how holograms work.",
     "Holograms are created using light and interference patterns.",
@@ -79,12 +87,12 @@ async function translateSentences(sentences, targetLanguage, tone = "formal", ma
     "If you can find four points somewhere on this loop that make the vertices of a square, it's called an inscribed square of the loop."
   ];
 
-  const targetLanguage = "Spanish";
-  const tone = "formal";
+  const targetLanguage = "English"; // Can also include regional language inputs (e.g. Mexican Spanish, Canadian French, etc.)
+  const tone = "formal"; // Can also include other tones (e.g. informal, casual, excited, inspiring)
   const maxLength = 100; // Optional: limit each sentence to 100 characters
 
   try {
-    const translations = await translateSentences(sentences, targetLanguage, tone, maxLength);
+    const translations = await translateSentences(spanishIdioms, targetLanguage, tone, maxLength);
     console.log("Translated Sentences:", translations);
   } catch (error) {
     console.error(error.message);
