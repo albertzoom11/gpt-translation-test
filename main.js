@@ -22,8 +22,6 @@ async function translateSentences(sentences, targetLanguage, tone = "formal", ma
   }
 
   const delimiter = "@";
-  const promptBase = `Translate the following sentences into ${targetLanguage} with a ${tone} tone. Return nothing but the translations with the ${delimiter} symbol between them.`;
-  const lengthInstruction = maxLength
   const promptBase = `Translate the following sentences into ${targetLanguage} with a ${tone} tone. Return nothing but the translations with the ${delimiter} symbol between them. Maintain consistent terminology for recurring terms or names.`;
   const lengthInstruction = maxLength ? ` Make sure each sentence is no longer than ${maxLength} characters.`: "";
 
